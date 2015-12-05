@@ -10,7 +10,7 @@ npm install
 ```
 npm start
 # browse to graphql/graphiql in web browser:
-open http://localhost/graphql
+# http://localhost:1337/graphql
 ```
 
 #### An example query (try in GraphIQL)
