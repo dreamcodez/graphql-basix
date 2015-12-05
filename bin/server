@@ -1,0 +1,2 @@
+#!/bin/sh -e
+node_modules/.bin/babel-node graphql-stub-api.js
