@@ -11,15 +11,26 @@ import {
 /* suggest using uppercase/class naming for types */
 
 var Coder = new GraphQLObjectType({
+  description: 'a coder; aka a code monkey, suitable for programming work',
   name: 'Coder',
   fields: {
-    name: {type: GraphQLString},
-    highlights: {type: GraphQLString},
-    baconNumber: {type: GraphQLInt}
+    name: {
+      description: 'the coders name',
+      type: GraphQLString
+    },
+    highlights: {
+      description: 'random highlights or facts about this coders existence',
+      type: GraphQLString
+    },
+    baconNumber: {
+      description: 'the distance from bacon; non-descript. mystery.',
+      type: GraphQLInt
+    }
   }
 });
 
 var getCoders = {
+  description: 'global list of available coders',
   type: new GraphQLList(Coder),
   resolve: () => [
     { name: 'Mike'
@@ -30,6 +41,10 @@ var getCoders = {
     , highlights: 'tutum, snowboarding, graphql?, silly?'
     , baconNumber: 999999
     },
+    { name: 'Jovin'
+    , highlights: 'yeahhhh man'
+    , baconNumber: 999
+    },
     { name: 'Chance'
     , highlights: 'windows, security chops, loves enchiladas?'
     , baconNumber: 9999999
@@ -38,7 +53,6 @@ var getCoders = {
     , highlights: 'assembly language, reactjs, shell guru, jujitsumania?'
     , baconNumber: 9999999
     }
-
   ]
 };
 
@@ -52,17 +66,20 @@ var logToServer = {
 };
 
 var QueryRoot = new GraphQLObjectType({
+  description: 'global query object',
   name: 'QueryRoot',
   fields: {getCoders}
 });
 
 var MutationRoot = new GraphQLObjectType({
+  description: 'global mutation object',
   name: 'MutationRoot',
   fields: {logToServer}
 });
 
 /* main schema */
 module.exports = new GraphQLSchema({
+  description: 'a test schema with koa',
   query: QueryRoot,
   mutation: MutationRoot
 });
