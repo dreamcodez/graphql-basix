@@ -1,1 +1,1 @@
-server: bin/server
+api: node dist/api.js
