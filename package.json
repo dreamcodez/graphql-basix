@@ -6,6 +6,10 @@
     "install": "webpack",
     "watch": "webpack -w"
   },
+  "engines": {
+    "node": "6.3.0",
+    "npm": "3.10.5"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dreamcodez/graphql-basix.git"
