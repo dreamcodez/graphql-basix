@@ -2,7 +2,7 @@ var webpack = require('webpack')
 
 module.exports = {
   devtool: 'sourcemap',
-  entry: { api: './src/api.js' },
+  entry: { api: './src/api.js', sign: './src/sign.js' },
   target: 'node',
   output: {
     path: 'dist',
@@ -13,7 +13,7 @@ module.exports = {
   module: { loaders: [ {
     test: /\.js$/,
     loader: 'babel',
-    query: { presets: [ 'babel-preset-es2017', 'node6' ] }
+    query: { presets: [ 'stage-0', 'node6' ], plugins: ['transform-bluebird'] }
   } ] },
   context: __dirname,
   node: { __filename: true },
