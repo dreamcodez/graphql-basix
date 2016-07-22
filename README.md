@@ -1,5 +1,5 @@
 
-This is meant to be a basic example of graphql/express (minimal) .. modify this base to grow your own schema/api.
+This is meant to be a basic example of graphql/koa (minimal) .. modify this base to grow your own schema/api.
 
 ## Installation
 ```
@@ -8,7 +8,12 @@ npm install
 
 ## Running
 ```
-npm start
+PORT=1337 node dist/api.js
+
+# OR
+
+foreman start
+
 # browse to graphql/graphiql in web browser:
 # http://localhost:1337/graphql
 ```
