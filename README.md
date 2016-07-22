@@ -8,14 +8,10 @@ npm install
 
 ## Running
 ```
-PORT=1337 node dist/api.js
-
-# OR
-
 foreman start
 
 # browse to graphql/graphiql in web browser:
-# http://localhost:1337/graphql
+# http://localhost:5000/graphql
 ```
 
 #### An example query (try in GraphIQL)
