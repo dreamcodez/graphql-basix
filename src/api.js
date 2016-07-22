@@ -1,19 +1,27 @@
-import koa from 'koa'
-import logger from 'koa-logger'
-import mount from 'koa-mount'
+import Promise from 'bluebird'
 import graphqlHTTP from 'koa-graphql'
+import koa from 'koa'
+import koaLogger from 'koa-logger'
+import koaMount from 'koa-mount'
 
+import wrapHttps from './wrap-https'
 import schema from './schema'
 
-const PORT = process.env.PORT
-const ENABLE_LOG = process.env.ENABLE_LOG || false
+const init = Promise.coroutine(function *() {
+  const PORT = process.env.PORT
+  const ENABLE_LOG = process.env.ENABLE_LOG || false
 
-if (!PORT) throw new Error('PORT must be assigned!')
+  if (!PORT) throw new Error('PORT must be assigned!')
 
-const app = koa()
+  const app = koa()
 
-if (ENABLE_LOG) app.use(logger())
+  if (ENABLE_LOG) app.use(koaLogger())
 
-app.use(mount('/graphql', graphqlHTTP({ schema, graphiql: true })))
+  app.use(koaMount('/graphql', graphqlHTTP({ schema, graphiql: true })))
 
-app.listen(PORT, () => console.log(`Listening on ${PORT}`))
+  const wrappedApp = yield wrapHttps(app)
+  wrappedApp.listen(PORT, () => console.log(`Listening on ${PORT}`))
+})
+
+// go time!
+init().then()
